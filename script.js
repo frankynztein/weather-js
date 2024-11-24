@@ -38,10 +38,7 @@ async function getFetchData(endPoint, city) {
 
   try {
     const response = await fetch(apiUrl);
-    // console.log("Response   ", response);
     const data = await response.json();
-    // console.log("response.json     ", response.json())
-    // console.log("data           ", data);
 
     if (response.ok) {
       return data;
@@ -104,37 +101,13 @@ async function updateWeatherInfo(city) {
   showDisplaySection(weatherInfoSection);
 }
 
-// async function updateForecastsInfo(city) {
-//   const forecastsData = await getFetchData('forecast', city);
-
-//   const timeTaken = '12:00:00';
-//   const todayDate = new Date().toISOString().split('T')[0];
-
-//   forecastItemsContainer.innerHTML = '';
-//   forecastsData.list.forEach(forecastWeather => {
-//     if(forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)) {
-//       updateForecastItems(forecastWeather)
-//     }
-
-//   })
-// }
-
-getFetchData('forecast', 'madrid').then(data => {
-  console.log("Resultado de getFetchData('forecast', 'madrid'):", data);
-}).catch(error => {
-  console.error("Error al llamar a getFetchData:", error);
-});
-
-
 async function updateForecastsInfo(city) {
   const forecastsData = await getFetchData('forecast', city);
 
   if (!forecastsData || !forecastsData.list) {
-    console.error("No se pudo obtener los datos del pronóstico o la estructura no es válida:", forecastsData);
+    console.error("No forecast data:", forecastsData);
     return;
   }
-
-  console.log("Datos del pronóstico obtenidos correctamente:", forecastsData);
 
   const timeTaken = '12:00:00';
   const todayDate = new Date().toISOString().split('T')[0];
