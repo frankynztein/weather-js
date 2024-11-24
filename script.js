@@ -38,10 +38,10 @@ async function getFetchData(endPoint, city) {
 
   try {
     const response = await fetch(apiUrl);
-    console.log("Response   ", response);
+    // console.log("Response   ", response);
     const data = await response.json();
-    console.log("response.json     ", response.json())
-    console.log("data           ", data);
+    // console.log("response.json     ", response.json())
+    // console.log("data           ", data);
 
     if (response.ok) {
       return data;
@@ -106,8 +106,8 @@ async function updateWeatherInfo(city) {
 
 async function updateForecastsInfo(city) {
   const forecastsData = await getFetchData('forecast', city);
-  console.log(await getFetchData('forecast', city));
-  console.log(forecastsData);
+  console.log("function getFetchData         ", await getFetchData('forecast', city));
+  console.log("forecastsData            ", forecastsData);
 
   const timeTaken = '12:00:00';
   const todayDate = new Date().toISOString().split('T')[0];
@@ -120,6 +120,8 @@ async function updateForecastsInfo(city) {
 
   // })
 }
+
+console.log("function updateForecastsInfo(madrid)                 ", updateForecastsInfo("madrid"))
 
 function updateForecastItems(weatherData) {
 
