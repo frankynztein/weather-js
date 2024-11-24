@@ -33,13 +33,26 @@ cityInput.addEventListener('keydown', (e) => {
   }
 })
 
+// async function getFetchData(endPoint, city) {
+//   const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`;
+
+//   const response = await fetch(apiUrl);
+
+//   return response.json()
+// }
+
 async function getFetchData(endPoint, city) {
-  const apiUrl = `/api/weather?city=${city}`;
+  const apiUrl = `/api/weather?endPoint=${endPoint}&city=${city}`;
 
-  const response = await fetch(apiUrl);
-
-  return response.json()
+  try {
+    const response = await fetch(apiUrl);
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
 }
+
 
 function getWeatherIcon(id) {
   if(id <= 232) return 'thunderstorm.svg'
