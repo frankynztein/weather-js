@@ -40,8 +40,8 @@ async function getFetchData(endPoint, city) {
     const response = await fetch(apiUrl);
     console.log("Response   ", response);
     const data = await response.json();
-    
-    console.log(data);
+    console.log("response.json     ", response.json())
+    console.log("data           ", data);
 
     if (response.ok) {
       return data;
