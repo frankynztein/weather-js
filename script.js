@@ -38,6 +38,7 @@ async function getFetchData(endPoint, city) {
 
   try {
     const response = await fetch(apiUrl);
+    console.log("Response   ", response);
     const data = await response.json();
     
     console.log(data);
