@@ -105,7 +105,7 @@ async function updateWeatherInfo(city) {
 
 async function updateForecastsInfo(city) {
   const forecastsData = await getFetchData('forecast', city);
-  console.log(forecastsData);
+  console.log(getFetchData('forecast', city));
 
   const timeTaken = '12:00:00';
   const todayDate = new Date().toISOString().split('T')[0];
