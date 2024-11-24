@@ -33,29 +33,6 @@ cityInput.addEventListener('keydown', (e) => {
   }
 })
 
-// async function getFetchData(endPoint, city) {
-//   const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`;
-
-//   const response = await fetch(apiUrl);
-
-//   return response.json()
-// }
-
-// async function getFetchData(endPoint, city) {
-//   const apiUrl = `https://weather-js-liart.vercel.app/api/weather?endPoint=${endPoint}&city=${city}`;
-//   ;
-
-//   try {
-//     const response = await fetch(apiUrl);
-//     return await response.json();
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return null;
-//   }
-// }
-
-
-
 async function getFetchData(endPoint, city) {
   const apiUrl = `/api/weather?endPoint=${endPoint}&city=${city}`;
 
@@ -128,17 +105,18 @@ async function updateWeatherInfo(city) {
 
 async function updateForecastsInfo(city) {
   const forecastsData = await getFetchData('forecast', city);
+  console.log(forecastsData);
 
   const timeTaken = '12:00:00';
   const todayDate = new Date().toISOString().split('T')[0];
 
-  forecastItemsContainer.innerHTML = '';
-  forecastsData.list.forEach(forecastWeather => {
-    if(forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)) {
-      updateForecastItems(forecastWeather)
-    }
+  // forecastItemsContainer.innerHTML = '';
+  // forecastsData.list.forEach(forecastWeather => {
+  //   if(forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)) {
+  //     updateForecastItems(forecastWeather)
+  //   }
 
-  })
+  // })
 }
 
 function updateForecastItems(weatherData) {
