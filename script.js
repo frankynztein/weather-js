@@ -42,7 +42,8 @@ cityInput.addEventListener('keydown', (e) => {
 // }
 
 async function getFetchData(endPoint, city) {
-  const apiUrl = `/api/weather?endPoint=${endPoint}&city=${city}`;
+  const apiUrl = `https://weather-js-liart.vercel.app/api/weather?endPoint=${endPoint}&city=${city}`;
+  ;
 
   try {
     const response = await fetch(apiUrl);
