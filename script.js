@@ -119,6 +119,13 @@ async function updateWeatherInfo(city) {
 //   })
 // }
 
+getFetchData('forecast', 'madrid').then(data => {
+  console.log("Resultado de getFetchData('forecast', 'madrid'):", data);
+}).catch(error => {
+  console.error("Error al llamar a getFetchData:", error);
+});
+
+
 async function updateForecastsInfo(city) {
   const forecastsData = await getFetchData('forecast', city);
 
