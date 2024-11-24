@@ -41,18 +41,41 @@ cityInput.addEventListener('keydown', (e) => {
 //   return response.json()
 // }
 
+// async function getFetchData(endPoint, city) {
+//   const apiUrl = `https://weather-js-liart.vercel.app/api/weather?endPoint=${endPoint}&city=${city}`;
+//   ;
+
+//   try {
+//     const response = await fetch(apiUrl);
+//     return await response.json();
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return null;
+//   }
+// }
+
+
+
 async function getFetchData(endPoint, city) {
-  const apiUrl = `https://weather-js-liart.vercel.app/api/weather?endPoint=${endPoint}&city=${city}`;
-  ;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`;
 
   try {
     const response = await fetch(apiUrl);
-    return await response.json();
+    const data = await response.json();
+    
+    console.log(data);
+
+    if (response.ok) {
+      return data;
+    } else {
+      throw new Error(data.message || "Error en la API");
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
   }
 }
+
 
 
 function getWeatherIcon(id) {
@@ -105,8 +128,6 @@ async function updateWeatherInfo(city) {
 
 async function updateForecastsInfo(city) {
   const forecastsData = await getFetchData('forecast', city);
-
-  console.log(forecastsData);
 
   const timeTaken = '12:00:00';
   const todayDate = new Date().toISOString().split('T')[0];
